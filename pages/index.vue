@@ -29,44 +29,36 @@
       <FormKit type="submit" label="Calculate" />
     </FormKit>
 
-    <h2>Annual cost: £{{ cCostDiscounted }}</h2>
+    <h2>Annual cost: {{ formatter.format(cCostDiscounted) }}</h2>
 
     <h3>Breakdown</h3>
     <table>
       <tbody>
         <tr>
           <td>Annual standing charge</td>
-          <td>£{{ cAnnualStandingCharge }}</td>
+          <td>{{ formatter.format(cAnnualStandingCharge) }}</td>
         </tr>
         <tr>
           <td>Annual usage cost</td>
-          <td>£{{ cCost }}</td>
+          <td>{{ formatter.format(cCost) }}</td>
         </tr>
         <tr>
           <td>Combined annual cost</td>
-          <td>£{{ cTotal }}</td>
+          <td>{{ formatter.format(cTotal) }}</td>
         </tr>
         <tr>
           <td>Winter funding</td>
-          <td>-£{{ funding }}</td>
+          <td>-{{ formatter.format(funding) }}</td>
         </tr>
         <tr>
           <td>Discounted annual cost</td>
           <td>
-            <b>£{{ cCostDiscounted }}</b>
+            <b>{{ formatter.format(cCostDiscounted) }}</b>
           </td>
         </tr>
         <tr>
           <td>Monthly cost</td>
-          <td>£{{ cCostMonthly }}</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td></td>
+          <td>{{ formatter.format(cCostMonthly) }}</td>
         </tr>
       </tbody>
     </table>
@@ -114,6 +106,11 @@ const funding = ref(400.0);
 const cCostDiscounted = ref(0);
 const cCostMonthly = ref(0);
 
+var formatter = new Intl.NumberFormat("en-GB", {
+  style: "currency",
+  currency: "GBP",
+});
+
 const submitHandler = () => {
   // electric
   eAnnualStandingCharge.value = eUsage.value > 0 ? eDailyStandingCharge.value * 365 : 0;
@@ -138,4 +135,8 @@ onMounted(() => {
 });
 </script>
 
-<style></style>
+<style lang="css">
+table td:nth-child(1) {
+  text-align: end;
+}
+</style>
