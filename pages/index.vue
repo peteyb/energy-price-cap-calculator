@@ -17,6 +17,7 @@
         name="eUsage"
         v-model="eUsage"
         label="Electric usage (KWh)"
+        placeholder="Enter a numeric value or 0 if not applicable"
         validation="required|number"
       />
       <FormKit
@@ -24,60 +25,65 @@
         name="gUsage"
         v-model="gUsage"
         label="Gas usage (KWh)"
+        placeholder="Enter a numeric value or 0 if not applicable"
         validation="required|number"
       />
       <FormKit type="submit" label="Calculate" />
     </FormKit>
 
-    <h2>Annual cost: {{ formatter.format(cCostDiscounted) }}</h2>
+    <template v-if="cTotal > 0">
+      <h2>Annual cost: {{ formatter.format(cCostDiscounted) }}</h2>
 
-    <h3>Breakdown</h3>
-    <table>
-      <tbody>
-        <tr>
-          <td>Annual standing charge</td>
-          <td>{{ formatter.format(cAnnualStandingCharge) }}</td>
-        </tr>
-        <tr>
-          <td>Annual usage cost</td>
-          <td>{{ formatter.format(cCost) }}</td>
-        </tr>
-        <tr>
-          <td>Combined annual cost</td>
-          <td>{{ formatter.format(cTotal) }}</td>
-        </tr>
-        <tr>
-          <td>Winter funding</td>
-          <td>-{{ formatter.format(funding) }}</td>
-        </tr>
-        <tr>
-          <td>Discounted annual cost</td>
-          <td>
-            <b>{{ formatter.format(cCostDiscounted) }}</b>
-          </td>
-        </tr>
-        <tr>
-          <td>Monthly cost</td>
-          <td>{{ formatter.format(cCostMonthly) }}</td>
-        </tr>
-      </tbody>
-    </table>
+      <h3>Breakdown</h3>
+      <table>
+        <tbody>
+          <tr>
+            <td>Annual standing charge</td>
+            <td>{{ formatter.format(cAnnualStandingCharge) }}</td>
+          </tr>
+          <tr>
+            <td>Annual usage cost</td>
+            <td>{{ formatter.format(cCost) }}</td>
+          </tr>
+          <tr>
+            <td>Combined annual cost</td>
+            <td>{{ formatter.format(cTotal) }}</td>
+          </tr>
+          <tr>
+            <td>Winter funding</td>
+            <td>-{{ formatter.format(funding) }}</td>
+          </tr>
+          <tr>
+            <td>Discounted annual cost</td>
+            <td>
+              <b>{{ formatter.format(cCostDiscounted) }}</b>
+            </td>
+          </tr>
+          <tr>
+            <td>Monthly cost</td>
+            <td>{{ formatter.format(cCostMonthly) }}</td>
+          </tr>
+        </tbody>
+      </table>
 
-    <h4>Notes</h4>
-    <p>
-      Based on figures provided here
-      <a
-        href="https://www.gov.uk/government/publications/energy-bills-support/energy-bills-support-factsheet-8-september-2022"
-        >https://www.gov.uk/government/publications/energy-bills-support/energy-bills-support-factsheet-8-september-2022</a
-      >
-    </p>
-    <p>Electric daily standing charge set at £{{ eDailyStandingCharge }} per day</p>
-    <p>Electric per kWh charge set at £{{ ePKW }}</p>
-    <p>
-      Gas daily standard charge set at £{{ gDailyStandingCharge }}
-      per day
-    </p>
-    <p>Gas per kWh charge set at £{{ gPKW }}</p>
+      <h4>Notes</h4>
+      <p>
+        Based on figures provided here
+        <a
+          href="https://www.gov.uk/government/publications/energy-bills-support/energy-bills-support-factsheet-8-september-2022"
+          target="_blank"
+          rel="noopener noreferrer"
+          >https://www.gov.uk/government/publications/energy-bills-support/energy-bills-support-factsheet-8-september-2022</a
+        >
+      </p>
+      <p>Electric daily standing charge set at £{{ eDailyStandingCharge }} per day</p>
+      <p>Electric per kWh charge set at £{{ ePKW }}</p>
+      <p>
+        Gas daily standard charge set at £{{ gDailyStandingCharge }}
+        per day
+      </p>
+      <p>Gas per kWh charge set at £{{ gPKW }}</p>
+    </template>
   </div>
 </template>
 
@@ -85,14 +91,14 @@
 import { ref } from "vue";
 
 // electric
-const eUsage = ref(3742);
+const eUsage = ref(""); // 3742
 const eDailyStandingCharge = ref(0.46);
 const eAnnualStandingCharge = ref(0);
 const ePKW = ref(0.34);
 const eCost = ref(0);
 
 // gas
-const gUsage = ref(3524);
+const gUsage = ref(""); // 3524
 const gDailyStandingCharge = ref(0.28);
 const gAnnualStandingCharge = ref(0);
 const gPKW = ref(0.103);
@@ -135,8 +141,11 @@ onMounted(() => {
 });
 </script>
 
-<style lang="css">
-table td:nth-child(1) {
+<style>
+table td {
+  width: 10em;
+}
+table td:nth-child(2) {
   text-align: end;
 }
 </style>
