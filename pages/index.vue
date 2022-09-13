@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Energy Price Cap Calculator</h1>
+    <h1>UK Energy Price Cap Calculator</h1>
     <p>
       Enter your estimated annual <b>electric</b> and <b>gas</b> usage in KWh to generate an
       estimated bill with breakdown
@@ -84,6 +84,23 @@
       </p>
       <p>Gas per kWh charge set at £{{ gPKW }}</p>
     </template>
+
+    <h5>Terms of use</h5>
+    <p>
+      I created this calculator to help determine my own potential energy costs for 2022-23. It has
+      been created in good faith based on government provided figures on 13/09/2022.
+    </p>
+    <p>
+      THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
+      IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
+      AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
+      CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+      CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+      SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+      THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+      OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+      POSSIBILITY OF SUCH DAMAGE.
+    </p>
   </div>
 </template>
 
