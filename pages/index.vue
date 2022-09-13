@@ -68,13 +68,14 @@
 
       <h4>Notes</h4>
       <p>
-        Based on figures provided here
+        Based on figures provided at
         <a
           href="https://www.gov.uk/government/publications/energy-bills-support/energy-bills-support-factsheet-8-september-2022"
           target="_blank"
           rel="noopener noreferrer"
           >https://www.gov.uk/government/publications/energy-bills-support/energy-bills-support-factsheet-8-september-2022</a
         >
+        based on <b>standard variable tariff dual fuel customers paying by direct debit</b>
       </p>
       <p>Electric daily standing charge set at £{{ eDailyStandingCharge }} per day</p>
       <p>Electric per kWh charge set at £{{ ePKW }}</p>
